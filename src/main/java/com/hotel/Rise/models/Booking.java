@@ -1,9 +1,8 @@
-package com.hotel.models;
+package com.hotel.Rise.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,4 +38,17 @@ public class Booking {
     @JoinColumn(name = "user_id")
     Room room;
 
+    public void calculateNumberOfGuest(){
+        this.numOfGuests = this.numOfChildren + this.numOfAdults;
+    }
+
+    public void setNumOfAdults(Long numOfAdults) {
+        this.numOfAdults = numOfAdults;
+        calculateNumberOfGuest();
+    }
+
+    public void setNumOfChildren(Long numOfChildren) {
+        this.numOfChildren = numOfChildren;
+        calculateNumberOfGuest();
+    }
 }

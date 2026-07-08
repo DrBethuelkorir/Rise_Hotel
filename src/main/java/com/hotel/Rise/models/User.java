@@ -1,4 +1,4 @@
-package com.hotel.models;
+package com.hotel.Rise.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -25,8 +25,10 @@ public class User {
     private String email;
     @NotBlank(message = "email should not be blank")
     private Long phoneNumber;
+    @NotBlank(message = "password should not be blank")
     private String password;
     private String role;
 
+    @OneToMany(mappedBy = "user",orphanRemoval = true,cascade = CascadeType.ALL)
     private List<Booking>  bookings = new ArrayList<>();
 }

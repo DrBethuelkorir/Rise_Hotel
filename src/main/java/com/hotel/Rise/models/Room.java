@@ -1,5 +1,6 @@
-package com.hotel.models;
+package com.hotel.Rise.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,6 +22,6 @@ public class Room {
     private BigDecimal roomPrice;
     private String roomPhotoUrl;
 
-    @OneToMany()
-    Booking booking;
+    @OneToMany(mappedBy = "room",orphanRemoval = true,cascade = CascadeType.ALL)
+    List<Booking> booking = new ArrayList<>();
 }
