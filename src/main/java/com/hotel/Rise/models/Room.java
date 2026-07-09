@@ -1,8 +1,6 @@
 package com.hotel.Rise.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +13,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name ="rooms")
 public class Room {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String roomType;
     private BigDecimal roomPrice;

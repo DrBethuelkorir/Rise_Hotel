@@ -35,7 +35,7 @@ public class Booking {
     User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "room_id")
     Room room;
 
     public void calculateNumberOfGuest(){
