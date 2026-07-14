@@ -11,8 +11,11 @@ import org.springframework.security.core.Authentication;
 
 import java.security.Key;
 import io.jsonwebtoken.SignatureException;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component
 public class JWTUtils {
 
     @Value("${auth.token.jwtsecret}")

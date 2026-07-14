@@ -20,8 +20,7 @@ public class BookingDto {
     private Date checkOutDate;
     private Long numOfAdults;
     private Long numOfChildren;
-    private Long numOfGuests;
     private String bookingConfirmationCode;
-    private User user;
-    private Room room;
+    private UserDto user;
+    private RoomDto room;
 }
