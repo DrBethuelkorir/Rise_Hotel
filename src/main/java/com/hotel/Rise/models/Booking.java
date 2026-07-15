@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,9 +21,9 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Future(message = "checkInDate should not be blank")
-    private Date checkInDate;
+    private LocalDate checkInDate;
     @Future(message = "checkOutDate should not be blank")
-    private Date checkOutDate;
+    private LocalDate checkOutDate;
     @Min(value = 1,message = "Number of adults cannot be less than one")
     private Long numOfAdults;
     @Min(value = 0,message = "Number of children cannot be less than one")

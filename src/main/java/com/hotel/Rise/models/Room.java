@@ -21,6 +21,7 @@ public class Room {
     private String roomType;
     private BigDecimal roomPrice;
     private String roomPhotoUrl;
+    private String description;
 
     @OneToMany(mappedBy = "room",orphanRemoval = true,cascade = CascadeType.ALL)
     List<Booking> booking = new ArrayList<>();

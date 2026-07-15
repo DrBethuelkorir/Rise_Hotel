@@ -1,21 +1,19 @@
 package com.hotel.Rise.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.hotel.Rise.models.Booking;
 import lombok.Data;
-import org.apache.catalina.User;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResponseDto {
-    private  String statusCode;
+public class Response {
+    private  int statusCode;
     private String message;
     private String token;
     private String role;
-    private Date expirationTime;
+    private String expirationTime;
     private String confirmationCode;
     private UserDto  user;
     private RoomDto room;
