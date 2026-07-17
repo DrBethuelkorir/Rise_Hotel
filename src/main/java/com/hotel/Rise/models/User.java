@@ -2,6 +2,7 @@ package com.hotel.Rise.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +24,7 @@ public class User {
     private String name;
     @NotBlank(message = "name should not be blank")
     private String email;
-    @NotBlank(message = "email should not be blank")
+    @NotNull(message = "email should not be blank")
     private Long phoneNumber;
     @NotBlank(message = "password should not be blank")
     private String password;

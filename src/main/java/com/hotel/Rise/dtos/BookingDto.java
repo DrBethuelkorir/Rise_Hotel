@@ -10,14 +10,15 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingDto {
     private int id;
-    private Date checkInDate;
-    private Date checkOutDate;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
     private Long numOfAdults;
     private Long numOfChildren;
     private String bookingConfirmationCode;

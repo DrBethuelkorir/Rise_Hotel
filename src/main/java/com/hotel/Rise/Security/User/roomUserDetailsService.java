@@ -18,8 +18,8 @@ public class roomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = Optional.ofNullable(userRepository
-                .findByEmail(username)).orElseThrow(() -> new UsernameNotFoundException("Username/Email not found"));
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Username/Email not found"));
 
         return  roomUserDetails.buildUserDetails(user);
     }
