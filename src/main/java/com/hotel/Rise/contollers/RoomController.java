@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
+
 
 @RestController
 @RequestMapping("/rooms")
@@ -23,13 +23,13 @@ public class RoomController {
     private final IRoomService roomService;
     private final IBookingService bookingService;
 
-    @PostMapping("/all")
+    @PostMapping("/add")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> addRooms(
             @RequestParam(value = "photo",required = false)MultipartFile photo,
             @RequestParam(value = "roomType",required = false)String roomType,
             @RequestParam(value = "roomPrice",required = false) BigDecimal roomPrice,
-            @RequestParam(value = "roomDescription",required = false)String roomDescription
+                @RequestParam(value = "roomDescription",required = false)String roomDescription
 
             ) {
         if ( roomType == null ||roomType.isBlank()

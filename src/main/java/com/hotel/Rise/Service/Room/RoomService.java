@@ -1,6 +1,7 @@
 package com.hotel.Rise.Service.Room;
 
 import com.hotel.Rise.Exeption.OurExeption;
+import com.hotel.Rise.Service.AzureBlobService;
 import com.hotel.Rise.dtos.Response;
 import com.hotel.Rise.dtos.RoomDto;
 import com.hotel.Rise.models.Room;
@@ -12,7 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +23,7 @@ public class RoomService implements IRoomService {
 
     private final RoomRepository roomRepository;
     private final BookingRepository bookingRepository;
+    private final AzureBlobService azureBlobSevice;
 
 
     @Override
@@ -36,7 +37,7 @@ public class RoomService implements IRoomService {
             room.setRoomType(roomType);
             room.setRoomPrice(roomPrice);
             room.setDescription(description);
-            room.setRoomPhotoUrl(null);
+            room.setRoomPhotoUrl(azureBlobSevice.uploadFile(file));
             Room savedRoom = roomRepository.save(room);
             RoomDto roomDto = Utils.mapRoomEntityToRoomDTO(savedRoom);
             response.setStatusCode(200);
@@ -60,7 +61,7 @@ public class RoomService implements IRoomService {
             Room room = roomRepository.findById(id).orElseThrow(()->new OurExeption("Room not found"));
             if(room.getRoomPrice() != null)room.setRoomPrice(roomPrice);
             if(room.getDescription() != null)room.setDescription(description);
-            if(room.getRoomPhotoUrl() != null)room.setRoomPhotoUrl(null);
+            if(room.getRoomPhotoUrl() != null)room.setRoomPhotoUrl(azureBlobSevice.uploadFile(file));
             Room savedRoom = roomRepository.save(room);
             RoomDto roomDto = Utils.mapRoomEntityToRoomDTO(savedRoom);
             response.setStatusCode(200);

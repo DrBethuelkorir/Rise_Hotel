@@ -3,7 +3,6 @@ package com.hotel.Rise.contollers;
 import com.hotel.Rise.Service.User.UserService;
 import com.hotel.Rise.dtos.Response;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -34,15 +33,16 @@ public class UserController {
         Response response = userService.deleteUSer(userId);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
-    @GetMapping("get-user-bookingHistory/{userId}")
+    @GetMapping("/get-user-bookingHistory/{userId}")
     public ResponseEntity<Response> getUserBookingHistory(@PathVariable Long userId) {
         Response response = userService.getUserBookingHistory(userId);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
-    @GetMapping("/get-logged-in-user/{}")
+    @GetMapping("/get-logged-in-user")
     public ResponseEntity<Response> getLoggedInUser() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        assert authentication != null;
         String email = authentication.getName();
         Response response = userService.getMyInfo(email);
         return ResponseEntity.status(response.getStatusCode()).body(response);
