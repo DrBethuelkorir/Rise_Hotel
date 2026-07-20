@@ -1,7 +1,5 @@
 package com.hotel.Rise.contollers;
 
-import com.azure.core.annotation.Post;
-import com.hotel.Rise.Service.Booking.IBookingService;
 import com.hotel.Rise.Service.Room.IRoomService;
 import com.hotel.Rise.dtos.Response;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +19,6 @@ import java.util.List;
 public class RoomController {
 
     private final IRoomService roomService;
-    private final IBookingService bookingService;
 
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -94,7 +91,7 @@ public class RoomController {
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
-    @DeleteMapping("/delete{roomID}")
+    @DeleteMapping("/delete/{roomID}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> deleteRoom(@PathVariable Long roomID){
         Response response = roomService.deleteRoom(roomID);

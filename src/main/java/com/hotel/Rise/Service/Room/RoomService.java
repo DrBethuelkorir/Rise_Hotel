@@ -22,8 +22,7 @@ import java.util.List;
 public class RoomService implements IRoomService {
 
     private final RoomRepository roomRepository;
-    private final BookingRepository bookingRepository;
-    private final AzureBlobService azureBlobSevice;
+    private final AzureBlobService azureBlobService;
 
 
     @Override
@@ -37,7 +36,7 @@ public class RoomService implements IRoomService {
             room.setRoomType(roomType);
             room.setRoomPrice(roomPrice);
             room.setDescription(description);
-            room.setRoomPhotoUrl(azureBlobSevice.uploadFile(file));
+            room.setRoomPhotoUrl(azureBlobService.uploadFile(file));
             Room savedRoom = roomRepository.save(room);
             RoomDto roomDto = Utils.mapRoomEntityToRoomDTO(savedRoom);
             response.setStatusCode(200);
@@ -61,7 +60,7 @@ public class RoomService implements IRoomService {
             Room room = roomRepository.findById(id).orElseThrow(()->new OurExeption("Room not found"));
             if(room.getRoomPrice() != null)room.setRoomPrice(roomPrice);
             if(room.getDescription() != null)room.setDescription(description);
-            if(room.getRoomPhotoUrl() != null)room.setRoomPhotoUrl(azureBlobSevice.uploadFile(file));
+            if(room.getRoomPhotoUrl() != null)room.setRoomPhotoUrl(azureBlobService.uploadFile(file));
             Room savedRoom = roomRepository.save(room);
             RoomDto roomDto = Utils.mapRoomEntityToRoomDTO(savedRoom);
             response.setStatusCode(200);
@@ -103,7 +102,6 @@ public class RoomService implements IRoomService {
             List<Room> rooms = roomRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
             List<RoomDto> RoomListDto = Utils.mapRoomListEntityToRoomListDTO(rooms);
             response.setStatusCode(200);
-            response.setMessage("Room has been added");
             response.setRoomList(RoomListDto);
         } catch (Exception e) {
             response.setStatusCode(500);

@@ -17,7 +17,10 @@
 
         @PostMapping("/book-room/{roomId}/{userId}")
         @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
-        public ResponseEntity<Response> createBooking(@PathVariable Long roomId, @PathVariable Long userId, @RequestBody Booking booking){
+        public ResponseEntity<Response> createBooking(
+                @PathVariable Long roomId,
+                @PathVariable Long userId,
+                @RequestBody Booking booking){
             Response response =bookingService.saveBooking(roomId,userId,booking);
             response.setMessage("Booking created successfully");
             return ResponseEntity.status(response.getStatusCode()).body(response);

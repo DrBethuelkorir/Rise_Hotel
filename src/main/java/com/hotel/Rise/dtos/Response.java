@@ -2,7 +2,9 @@ package com.hotel.Rise.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class Response {
     private  int statusCode;
     private String message;
     private String token;
-    private String role;
+    private Collection<GrantedAuthority> role;
     private String expirationTime;
     private String confirmationCode;
     private UserDto  user;

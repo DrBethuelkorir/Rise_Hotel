@@ -39,8 +39,11 @@ public class Booking {
     @JoinColumn(name = "room_id")
     Room room;
 
-    public void calculateNumberOfGuest(){
-        this.numOfGuests = this.numOfChildren + this.numOfAdults;
+    public void calculateNumberOfGuest() {
+        long adults = (numOfAdults == null) ? 0L : numOfAdults;
+        long children = (numOfChildren == null) ? 0L : numOfChildren;
+
+        this.numOfGuests = adults + children;
     }
 
     public void setNumOfAdults(Long numOfAdults) {
@@ -52,4 +55,5 @@ public class Booking {
         this.numOfChildren = numOfChildren;
         calculateNumberOfGuest();
     }
+
 }

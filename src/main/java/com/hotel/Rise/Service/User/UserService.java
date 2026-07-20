@@ -12,9 +12,11 @@
         import org.springframework.security.authentication.AuthenticationManager;
         import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
         import org.springframework.security.core.Authentication;
+        import org.springframework.security.core.GrantedAuthority;
         import org.springframework.security.crypto.password.PasswordEncoder;
         import org.springframework.stereotype.Service;
 
+        import java.util.Collection;
         import java.util.List;
 
         @Service
@@ -77,7 +79,7 @@
                     response.setStatusCode(200);
                     response.setToken(token);
                     response.setMessage("success");
-                    response.setRole(authentication.getAuthorities().toString());
+                    response.setRole((Collection<GrantedAuthority>) authentication.getAuthorities());
                     response.setExpirationTime("7 days");
                 } catch (OurExeption e) {
                     response.setStatusCode(404);

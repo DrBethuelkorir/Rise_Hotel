@@ -28,7 +28,13 @@ public class roomUserDetails implements UserDetails {
         this.id = user.getId();
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.authorities = List.of(new SimpleGrantedAuthority(user.getRole()));
+
+        String role = user.getRole();
+        if (role == null || role.isEmpty()) {
+            role = "USER";
+        }
+
+        this.authorities = List.of(new SimpleGrantedAuthority(role));
     }
     public static UserDetails buildUserDetails(User user) {
         return new roomUserDetails(user);
