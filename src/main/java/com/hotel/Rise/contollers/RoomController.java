@@ -58,7 +58,7 @@ public class RoomController {
         Response response = roomService.getAllAvailableRooms();
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
-    @GetMapping("/available-rooms-bt-date-and-type")
+    @GetMapping("/available-rooms-by-date-and-type")
     public ResponseEntity<Response> availableRoomsByDateAndType(
             @RequestParam(required = false)LocalDate checkInDate,
             @RequestParam(required = false)LocalDate checkOutDate,
@@ -77,7 +77,7 @@ public class RoomController {
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
-    @PutMapping("/update{roomId}")
+    @PutMapping("/update/{roomId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> updateRooms(
             @PathVariable Long roomId,
